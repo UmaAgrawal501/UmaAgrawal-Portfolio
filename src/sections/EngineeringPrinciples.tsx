@@ -35,11 +35,11 @@ export function EngineeringPrinciples() {
           {items.map((principle, index) => (
             <li key={principle.id}>
               <Reveal>
-                <article className="h-full rounded-2xl border border-border/80 bg-surface/55 p-6">
-                  <p className="type-mono text-accent-hover">
+                <article className="glass group relative h-full overflow-hidden rounded-3xl p-6 transition-colors duration-300 hover:border-border-strong">
+                  <p className="font-mono text-sm text-accent/70">
                     {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h3 className="type-h3 mt-3 text-text-primary">
+                  <h3 className="font-display mt-3 text-xl font-bold text-text-primary">
                     {principle.title}
                   </h3>
                   <p className="type-body mt-3 text-text-secondary">

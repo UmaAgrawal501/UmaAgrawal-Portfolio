@@ -313,6 +313,16 @@
     );
   }
 
+  .mask-fade-x {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+  }
+
   @keyframes aurora {
     0%,
     100% {

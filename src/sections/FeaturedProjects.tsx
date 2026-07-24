@@ -3,7 +3,6 @@
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { ProjectRow } from "@/components/projects/ProjectRow";
-import { workSectionTitle } from "@/constants/navigation";
 import { sectionHeadlineClassName, sectionLabelClassName } from "@/constants/sections";
 import { getFeaturedProjects } from "@/lib/selectors";
 
@@ -18,9 +17,9 @@ export function FeaturedProjects() {
     <section id="work" aria-labelledby="work-title" className="py-20 lg:py-28">
       <Container>
         <Reveal>
-          <p className={sectionLabelClassName}>Projects</p>
-          <h2 id="work-title" className={`${sectionHeadlineClassName} mt-3`}>
-            {workSectionTitle}
+          <p className={sectionLabelClassName}>Selected Work</p>
+          <h2 id="work-title" className={`${sectionHeadlineClassName} font-display mt-3`}>
+            AI products, shipped
           </h2>
           <p className="type-body mt-4 max-w-[40rem] text-text-secondary">
             Full-stack and AI solutions built to solve real problems—not demos that die in a notebook.

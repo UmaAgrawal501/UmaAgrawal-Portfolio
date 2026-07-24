@@ -4,7 +4,7 @@ export const site = {
   name: "Uma Agrawal",
   role: "AI Engineer",
   tagline:
-    "Architecting scalable solutions at the intersection of backend engineering and artificial intelligence—from RAG systems and multi-agent workflows to production FastAPI services.",
+    "I build AI products that solve real problems—turning complex ideas into reliable, production-ready systems people can actually use.",
   email: "agrawaluma2002@gmail.com",
   location: "Jaipur, Rajasthan, India",
   availability: "Open to AI Engineer roles and collaborations.",
@@ -33,5 +33,5 @@ export const site = {
   primaryCtaLabel: "Download Resume",
   secondaryCtaLabel: "Contact Me",
   secondaryCtaHref: "#contact",
-  contactHeadline: "Ready to build something with AI?",
+  contactHeadline: "Let's build something intelligent",
 } satisfies SiteConfig;

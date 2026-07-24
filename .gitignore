@@ -42,3 +42,4 @@ next-env.d.ts
 
 # Cursor IDE
 .cursor/
+path/to/secret-file

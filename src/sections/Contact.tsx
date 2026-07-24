@@ -28,10 +28,17 @@ export function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-headline" className="py-20 lg:py-28">
       <Container>
-        <div className="rounded-3xl border border-border/80 bg-surface/60 px-6 py-10 shadow-md sm:px-10 sm:py-14">
+        <div className="glass relative overflow-hidden rounded-[2rem] px-6 py-10 shadow-md sm:px-10 sm:py-14">
+          <div
+            className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(224,169,94,0.12),transparent_40%)] mix-blend-overlay"
+            aria-hidden="true"
+          />
           <Reveal>
             <p className={sectionLabelClassName}>{contactLabel}</p>
-            <h2 id="contact-headline" className={`${sectionHeadlineClassName} mt-3`}>
+            <h2
+              id="contact-headline"
+              className={`${sectionHeadlineClassName} font-display mt-3`}
+            >
               {headline}
             </h2>
             {invite ? (
@@ -44,7 +51,7 @@ export function Contact() {
           <Reveal>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href={`mailto:${site.email}`} className="btn-glow">
-                Email Me
+                Start a conversation
               </Button>
               <Button
                 href="/resume.pdf"
@@ -65,8 +72,8 @@ export function Contact() {
                       href={link.href}
                       aria-label={link.label}
                       className={cn(
-                        "inline-flex size-11 items-center justify-center rounded-full border border-border-strong text-text-secondary no-underline",
-                        "transition-[color,border-color,box-shadow] duration-200 hover:border-accent hover:text-accent-hover hover:glow-accent",
+                        "glass inline-flex size-11 items-center justify-center rounded-full text-text-secondary no-underline",
+                        "transition-[color,border-color,box-shadow] duration-200 hover:text-accent hover:glow-accent",
                         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
                       )}
                       {...(link.id === "resume"

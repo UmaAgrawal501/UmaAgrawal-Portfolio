@@ -3,7 +3,6 @@
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { TechIconPill } from "@/components/ui/TechIcon";
-import { navigation } from "@/constants/navigation";
 import {
   sectionHeadlineClassName,
   sectionLabelClassName,
@@ -14,9 +13,6 @@ import {
 } from "@/lib/selectors";
 import { cn } from "@/lib/cn";
 import type { Experience as ExperienceEntry } from "@/types";
-
-const experienceLabel =
-  navigation.find((item) => item.id === "experience")?.label ?? "Experience";
 
 function monogram(entry: ExperienceEntry) {
   const source = entry.company.trim();
@@ -43,7 +39,7 @@ function JourneyCard({
   return (
     <article
       className={cn(
-        "relative w-full rounded-2xl border border-border/80 bg-surface/60 p-5 shadow-sm sm:p-6",
+        "relative w-full rounded-[1.75rem] glass p-5 sm:p-6",
         side === "left" ? "lg:mr-auto lg:pr-8" : "lg:ml-auto lg:pl-8",
       )}
     >
@@ -128,10 +124,10 @@ export function Experience() {
     >
       <Container>
         <Reveal>
-          <p className={sectionLabelClassName}>{experienceLabel}</p>
+          <p className={sectionLabelClassName}>Journey</p>
           <h2
             id="experience-title"
-            className={`${sectionHeadlineClassName} mt-3`}
+            className={`${sectionHeadlineClassName} font-display mt-3`}
           >
             Professional Journey
           </h2>
