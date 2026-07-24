@@ -1,0 +1,109 @@
+/**
+ * Dark gold AI portfolio tokens — Hussam-inspired restyle (approved).
+ */
+
+:root {
+  --background: #08070a;
+  --surface: #0e0d12;
+  --surface-raised: #16141c;
+
+  --border: #2a262f;
+  --border-strong: #3d3744;
+
+  --accent: #e0a95e;
+  --accent-hover: #f0bd76;
+  --accent-muted: #a97b3c;
+  --accent-glow: rgb(224 169 94 / 0.45);
+  --accent-cool: #7fc7c4;
+
+  --text-primary: #f4f0e9;
+  --text-secondary: #b8afa1;
+  --text-tertiary: #8f8779;
+  --text-inverse: #08070a;
+
+  --success: #3ddc97;
+  --warning: #f5a524;
+  --focus: #f0bd76;
+
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --text-display: 2.75rem;
+  --text-display--line: 3.25rem;
+  --text-h1: 2rem;
+  --text-h1--line: 2.5rem;
+  --text-h2: 1.5rem;
+  --text-h2--line: 2rem;
+  --text-h3: 1.125rem;
+  --text-h3--line: 1.75rem;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line: 1.75rem;
+  --text-body: 1rem;
+  --text-body--line: 1.625rem;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line: 1.375rem;
+  --text-mono: 0.75rem;
+  --text-mono--line: 1.125rem;
+
+  --tracking-display: -0.03em;
+  --tracking-heading: -0.02em;
+  --tracking-body: -0.01em;
+  --tracking-mono: 0.04em;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  --container-prose: 42.5rem;
+  --container-shell: 72rem;
+  --container-hero-support: 40rem;
+  --gutter-mobile: 1.25rem;
+  --gutter-tablet: 2rem;
+  --header-height-mobile: 4rem;
+  --header-height-desktop: 4.5rem;
+  --header-blur: 12px;
+
+  --radius-none: 0;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
+
+  --shadow-none: none;
+  --shadow-sm: 0 0 0 1px rgb(224 169 94 / 0.18);
+  --shadow-md: 0 0 40px rgb(224 169 94 / 0.22);
+  --shadow-glow: 0 0 28px rgb(224 169 94 / 0.5);
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-enter: 250ms;
+  --distance-enter: 12px;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --text-display: 3.75rem;
+    --text-display--line: 4.25rem;
+    --text-h1: 2.5rem;
+    --text-h1--line: 3rem;
+    --text-h2: 1.75rem;
+    --text-h2--line: 2.25rem;
+    --text-h3: 1.25rem;
+    --text-h3--line: 1.875rem;
+    --text-body-lg--line: 1.875rem;
+    --text-mono: 0.8125rem;
+    --text-mono--line: 1.25rem;
+  }
+}
