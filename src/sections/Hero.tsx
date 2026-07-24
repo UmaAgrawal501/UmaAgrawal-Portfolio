@@ -1,110 +1,123 @@
 "use client";
 
 import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
-import { SocialIcon } from "@/components/ui/SocialIcon";
 import { about } from "@/data/about";
 import { site } from "@/data/site";
-import { getContactLinks } from "@/lib/selectors";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/cn";
 
+const ROTATING_TITLES = [
+  "AI Engineer",
+  "LLM Engineer",
+  "AI Agent Developer",
+] as const;
+
+const CAPABILITY_CHIPS = ["RAG", "AI Agents", "LangChain", "FastAPI"] as const;
+
 export function Hero() {
-  const firstName = site.name.split(" ")[0] ?? site.name;
-  const fullLine = `Hello, I'm ${firstName}`;
   const reduceMotion = useReducedMotion();
-  const [charCount, setCharCount] = useState(0);
-  const links = getContactLinks().filter((link) => link.id !== "resume");
+  const [titleIndex, setTitleIndex] = useState(0);
   const portrait = about.portrait;
+  const [firstName, ...restName] = site.name.split(" ");
+  const lastName = restName.join(" ");
 
   useEffect(() => {
     if (reduceMotion) return;
-
-    let index = 0;
     const id = window.setInterval(() => {
-      index += 1;
-      setCharCount(index);
-      if (index >= fullLine.length) {
-        window.clearInterval(id);
-      }
-    }, 55);
-
+      setTitleIndex((prev) => (prev + 1) % ROTATING_TITLES.length);
+    }, 2600);
     return () => window.clearInterval(id);
-  }, [fullLine, reduceMotion]);
-
-  const typed = reduceMotion ? fullLine : fullLine.slice(0, charCount);
+  }, [reduceMotion]);
 
   return (
     <section
       aria-labelledby="hero-name"
-      className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-center pb-16 pt-10 lg:min-h-[calc(100vh-4.5rem)] lg:pb-24 lg:pt-16"
+      className="relative flex min-h-screen flex-col justify-center pb-24 pt-28 lg:pb-28 lg:pt-32"
     >
       <Container className="relative">
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
           <div className="min-w-0">
+            <div className="glass mb-7 inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium text-text-secondary">
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-accent" />
+              </span>
+              {site.availability ?? "Available for AI projects"}
+            </div>
+
+            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-text-tertiary">
+              #
+            </p>
+
             <h1
               id="hero-name"
-              className="text-[clamp(2.5rem,7vw,4.25rem)] font-bold leading-[1.08] tracking-[-0.03em]"
+              className="font-display mt-2 text-5xl font-bold leading-[0.95] tracking-tight text-text-primary sm:text-6xl md:text-7xl"
             >
-              <span className="text-gradient-hero">{typed}</span>
-              <span
-                aria-hidden="true"
-                className="caret-blink ml-1 inline-block h-[0.9em] w-[3px] translate-y-[0.08em] bg-accent align-middle"
-              />
+              <span className="block">{firstName}</span>
+              {lastName ? (
+                <span className="gradient-text block">{lastName}</span>
+              ) : null}
             </h1>
 
-            <p className="mt-5 text-xl font-medium text-text-primary sm:text-2xl">
-              {site.role}
+            <p className="mt-6 text-xl text-text-secondary sm:text-2xl">
+              I&apos;m an{" "}
+              <span className="relative inline-flex min-w-[12ch] align-bottom font-semibold text-accent-hover">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={ROTATING_TITLES[titleIndex]}
+                    className="inline-block"
+                    initial={reduceMotion ? false : { y: 12, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={reduceMotion ? undefined : { y: -12, opacity: 0 }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    {ROTATING_TITLES[titleIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
             </p>
 
             <p className="mt-6 max-w-[36rem] text-[1.05rem] leading-8 text-text-secondary sm:text-[1.125rem]">
               {site.tagline}
             </p>
 
-            <div className="mt-10">
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Button href="#work" size="lg" className="btn-glow px-7">
+                View My Work
+              </Button>
               <Button
-                href="/resume.pdf"
-                download="Uma-Agrawal-Resume.pdf"
+                href="#contact"
                 size="lg"
-                className="btn-glow gap-2.5 px-7"
+                variant="secondary"
+                className="px-7"
               >
-                <SocialIcon name="resume" className="size-4 text-white" />
-                {site.primaryCtaLabel ?? "Download Resume"}
+                Let&apos;s Talk
               </Button>
             </div>
 
-            {links.length > 0 ? (
-              <ul className="mt-8 flex list-none flex-wrap items-center gap-3 p-0">
-                {links.map((link) => (
-                  <li key={link.id}>
-                    <a
-                      href={link.href}
-                      aria-label={link.label}
-                      className={cn(
-                        "inline-flex size-11 items-center justify-center rounded-full border border-border-strong text-text-secondary no-underline",
-                        "transition-[color,border-color,box-shadow] duration-200 hover:border-accent hover:text-accent-hover hover:glow-accent",
-                        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
-                      )}
-                      {...(link.external
-                        ? { target: "_blank", rel: "noopener noreferrer" }
-                        : {})}
-                    >
-                      <SocialIcon name={link.icon ?? link.id} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
+            <ul className="mt-8 flex list-none flex-wrap gap-2 p-0">
+              {CAPABILITY_CHIPS.map((chip) => (
+                <li
+                  key={chip}
+                  className="glass rounded-full px-3.5 py-1.5 font-mono text-[0.7rem] tracking-wide text-text-secondary"
+                >
+                  {chip}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="relative mx-auto flex w-full max-w-[22rem] justify-center lg:max-w-[26rem]">
             <div
-              className="absolute inset-[8%] rounded-full bg-accent/20 blur-3xl"
+              className="absolute inset-0 -z-10 scale-95 rounded-[2rem] bg-[radial-gradient(circle_at_50%_30%,rgba(224,169,94,0.35),transparent_65%)] blur-2xl"
               aria-hidden="true"
             />
-            <div className="relative aspect-square w-full overflow-hidden rounded-full portrait-ring">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] border border-border/80 bg-surface">
+              <div className="absolute inset-0 animate-pulse-glow rounded-[2rem] bg-accent/10" />
               {portrait ? (
                 <Image
                   src={portrait.src}
@@ -115,17 +128,31 @@ export function Hero() {
                   sizes="(max-width: 1024px) 22rem, 26rem"
                 />
               ) : (
-                <div className="flex h-full w-full items-center justify-center bg-surface-raised text-5xl font-semibold text-text-primary">
-                  {site.name
-                    .split(" ")
-                    .map((part) => part[0])
-                    .join("")
-                    .slice(0, 2)}
+                <div className="flex h-full w-full items-center justify-center bg-surface-raised font-display text-5xl font-bold text-text-primary">
+                  {firstName?.[0]}
+                  {lastName?.[0]}
                 </div>
               )}
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+              <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-accent px-3.5 py-1.5 text-xs font-semibold text-text-inverse">
+                <span className="size-1.5 rounded-full bg-text-inverse" />
+                Open to Work
+              </div>
             </div>
           </div>
         </div>
+
+        <a
+          href="#about"
+          className={cn(
+            "absolute bottom-0 left-1/2 mt-16 hidden -translate-x-1/2 flex-col items-center gap-2 text-text-tertiary no-underline transition-colors hover:text-accent md:flex",
+          )}
+          aria-label="Scroll to about"
+        >
+          <span className="flex h-9 w-5 justify-center rounded-full border border-border p-1">
+            <span className="mt-1 size-1 animate-float rounded-full bg-accent" />
+          </span>
+        </a>
       </Container>
     </section>
   );

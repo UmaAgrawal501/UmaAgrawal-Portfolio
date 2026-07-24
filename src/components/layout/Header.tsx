@@ -12,6 +12,14 @@ import { useActiveSection } from "@/hooks/useActiveSection";
 import { useScrolled } from "@/hooks/useScrolled";
 import { cn } from "@/lib/cn";
 
+const monogram =
+  site.name
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase() || "UA";
+
 export function Header() {
   const scrolled = useScrolled();
   const activeId = useActiveSection();
@@ -48,20 +56,34 @@ export function Header() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 px-4 pt-3 transition-[padding] duration-200 lg:pt-4">
-      <Container
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
+      <nav
         className={cn(
-          "flex h-14 items-center justify-between gap-4 rounded-full border px-4 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-200 lg:h-16 lg:px-5",
+          "flex w-full max-w-4xl items-center justify-between rounded-full px-3 py-2 pl-5 transition-all duration-500",
           scrolled || menuOpen
-            ? "border-border/80 bg-background/80 shadow-sm backdrop-blur-md"
-            : "border-transparent bg-transparent",
+            ? "glass border-border/80 shadow-sm"
+            : "border border-transparent bg-transparent",
         )}
+        aria-label="Primary"
       >
         <a
           href="#"
-          className="flex min-w-0 items-center gap-3 no-underline"
+          className="font-display text-lg font-bold tracking-tight text-text-primary no-underline transition-colors hover:text-accent"
           onClick={closeMenu}
         >
+          {monogram}
+          <span className="text-accent">.</span>
+        </a>
+
+        <ul className="hidden items-center gap-1 lg:flex">
+          {navigation.map((item) => (
+            <li key={item.id}>
+              <NavLink item={item} active={activeId === item.id} />
+            </li>
+          ))}
+        </ul>
+
+        <div className="hidden items-center gap-3 lg:flex">
           {portrait ? (
             <Image
               src={portrait.src}
@@ -70,70 +92,49 @@ export function Header() {
               height={36}
               className="size-9 rounded-full object-cover portrait-ring"
             />
-          ) : (
-            <span className="flex size-9 items-center justify-center rounded-full bg-accent/30 text-sm font-semibold text-text-primary">
-              {site.name.charAt(0)}
-            </span>
-          )}
-          <span className="type-body-sm truncate font-medium text-text-primary">
-            {site.name}
-          </span>
-        </a>
-
-        <nav
-          aria-label="Primary"
-          className="hidden min-w-0 items-center gap-1 lg:flex xl:gap-2"
-        >
-          {navigation.map((item) => (
-            <NavLink key={item.id} item={item} active={activeId === item.id} />
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-3 lg:flex">
+          ) : null}
           <Button href="#contact" size="sm" className="btn-glow rounded-full px-5">
-            Contact Me
+            Let&apos;s Talk
           </Button>
         </div>
 
         <button
           type="button"
-          className="type-body-sm inline-flex min-h-11 shrink-0 items-center text-text-secondary transition-colors hover:text-text-primary lg:hidden"
+          className="type-body-sm inline-flex min-h-11 shrink-0 items-center px-2 text-text-secondary transition-colors hover:text-text-primary lg:hidden"
           aria-expanded={menuOpen}
           aria-controls={menuId}
           onClick={() => setMenuOpen((open) => !open)}
         >
           {menuOpen ? "Close" : "Menu"}
         </button>
-      </Container>
+      </nav>
 
       <div
         id={menuId}
         className={cn(
-          "mx-auto mt-2 max-w-[var(--container-shell)] rounded-2xl border border-border bg-surface/95 backdrop-blur-md lg:hidden",
+          "absolute top-[calc(100%+0.5rem)] right-4 left-4 rounded-2xl border border-border bg-surface/95 backdrop-blur-md lg:hidden",
           menuOpen ? "block" : "hidden",
         )}
       >
-        <div className="px-5 py-6">
-          <nav aria-label="Primary mobile">
-            <ul className="flex flex-col gap-2">
-              {navigation.map((item) => (
-                <li key={item.id}>
-                  <NavLink
-                    item={item}
-                    active={activeId === item.id}
-                    onNavigate={closeMenu}
-                    className="min-h-12 w-full"
-                  />
-                </li>
-              ))}
-              <li className="pt-3" onClick={closeMenu}>
-                <Button href="#contact" className="btn-glow w-full">
-                  Contact Me
-                </Button>
+        <Container className="py-6">
+          <ul className="flex flex-col gap-2">
+            {navigation.map((item) => (
+              <li key={item.id}>
+                <NavLink
+                  item={item}
+                  active={activeId === item.id}
+                  onNavigate={closeMenu}
+                  className="min-h-12 w-full"
+                />
               </li>
-            </ul>
-          </nav>
-        </div>
+            ))}
+            <li className="pt-3" onClick={closeMenu}>
+              <Button href="#contact" className="btn-glow w-full">
+                Let&apos;s Talk
+              </Button>
+            </li>
+          </ul>
+        </Container>
       </div>
     </header>
   );

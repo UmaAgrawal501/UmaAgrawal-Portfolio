@@ -12,6 +12,27 @@ import { about } from "@/data/about";
 const aboutLabel =
   navigation.find((item) => item.id === "about")?.label ?? "About";
 
+const PILLARS = [
+  {
+    id: "production",
+    title: "Production-first",
+    description:
+      "Systems built to ship — observable, resilient, and grounded in real workflows.",
+  },
+  {
+    id: "retrieval",
+    title: "Retrieval-grounded",
+    description:
+      "RAG and vector search so answers stay accurate, current, and trustworthy.",
+  },
+  {
+    id: "agents",
+    title: "Agentic by design",
+    description:
+      "Tools, memory, and multi-step reasoning that get real work done.",
+  },
+] as const;
+
 export function About() {
   const paragraphs = about.paragraphs ?? [];
 
@@ -22,30 +43,46 @@ export function About() {
   return (
     <section id="about" aria-labelledby="about-headline" className="py-20 lg:py-28">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start lg:gap-16">
-          <Reveal>
-            <p className={sectionLabelClassName}>{aboutLabel}</p>
-            <h2 id="about-headline" className={`${sectionHeadlineClassName} mt-3`}>
-              {about.headline}
-            </h2>
-          </Reveal>
+        <Reveal>
+          <p className={sectionLabelClassName}>{aboutLabel}</p>
+          <h2
+            id="about-headline"
+            className={`${sectionHeadlineClassName} font-display mt-3 max-w-[40rem]`}
+          >
+            {about.headline}
+          </h2>
+          <p className="type-body-lg mt-6 max-w-[40rem] leading-8 text-text-secondary">
+            {about.body}
+          </p>
+          {paragraphs.slice(0, 1).map((paragraph) => (
+            <p
+              key={paragraph}
+              className="type-body mt-4 max-w-[40rem] leading-7 text-text-secondary"
+            >
+              {paragraph}
+            </p>
+          ))}
+        </Reveal>
 
-          <Reveal>
-            <div className="max-w-[40rem] space-y-6 rounded-2xl border border-border/80 bg-surface/50 p-6 sm:p-8">
-              <p className="type-body-lg leading-8 text-text-secondary">
-                {about.body}
-              </p>
-              {paragraphs.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="type-body leading-7 text-text-secondary"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </Reveal>
-        </div>
+        <ul className="mt-12 grid list-none gap-4 p-0 md:grid-cols-3">
+          {PILLARS.map((pillar, index) => (
+            <li key={pillar.id}>
+              <Reveal delay={index * 0.04}>
+                <article className="glass group relative h-full overflow-hidden rounded-3xl p-6 transition-colors duration-300 hover:border-border-strong md:p-7">
+                  <p className="font-mono text-sm text-accent/70">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="font-display mt-4 text-xl font-bold text-text-primary">
+                    {pillar.title}
+                  </h3>
+                  <p className="type-body mt-3 text-text-secondary">
+                    {pillar.description}
+                  </p>
+                </article>
+              </Reveal>
+            </li>
+          ))}
+        </ul>
       </Container>
     </section>
   );
