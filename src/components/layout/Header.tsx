@@ -94,7 +94,7 @@ export function Header() {
             />
           ) : null}
           <Button href="#contact" size="sm" className="btn-glow rounded-full px-5">
-            Let&apos;s Talk
+            Get in Touch
           </Button>
         </div>
 
@@ -130,7 +130,7 @@ export function Header() {
             ))}
             <li className="pt-3" onClick={closeMenu}>
               <Button href="#contact" className="btn-glow w-full">
-                Let&apos;s Talk
+                Get in Touch
               </Button>
             </li>
           </ul>

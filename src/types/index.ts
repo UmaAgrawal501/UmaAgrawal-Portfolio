@@ -154,7 +154,11 @@ export type ProjectMetric = {
 export type CaseStudySection = {
   id: string;
   title: string;
-  body: string;
+  body?: string;
+  /** Optional bullet list under the section */
+  items?: string[];
+  /** Optional diagram / screenshot for this section */
+  image?: Media | null;
 };
 
 /**
@@ -171,8 +175,22 @@ export type ProjectCaseStudy = {
 
   metrics?: ProjectMetric[];
   gallery?: Media[];
+  /** Optional longer overview body (case study); falls back to summary/solution */
+  overview?: string;
+  /** Optional intro shown under the hero on stacked case studies */
+  intro?: string;
+  /** Heading for the results list (default: Key Features) */
+  resultsHeading?: string;
+  /** Heading for challenges (default: Engineering Challenges) */
+  challengesHeading?: string;
+  /** Heading for learnings (default: Lessons Learned) */
+  learningsHeading?: string;
   /** Freeform blocks for future expansion without breaking fixed headings */
   sections?: CaseStudySection[];
+  /** Optional category line under the title */
+  category?: string;
+  /** Closing CTA copy */
+  cta?: string;
 };
 
 /**
@@ -194,7 +212,13 @@ export type Project = {
   /** Compact media for lists and cards */
   thumbnail?: Media | null;
 
+  /** Short homepage card blurb; falls back to `summary` */
+  cardSummary?: string;
   order?: number;
   status?: "shipped" | "ongoing" | "archived";
   role?: string;
+  /** Short uppercase-style label on the card media panel */
+  cardLabel?: string;
+  /** Gold outline pills under the summary (product/capability tags) */
+  cardTags?: string[];
 };

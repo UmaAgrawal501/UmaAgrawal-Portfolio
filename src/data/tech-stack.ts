@@ -66,7 +66,7 @@ export const techStack = [
     items: [
       { name: "PostgreSQL" },
       { name: "SQLite" },
-      { name: "Pinecone" },
+      { name: "ChromaDB" },
     ],
   },
   {

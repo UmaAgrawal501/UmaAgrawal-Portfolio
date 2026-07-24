@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { SkipToContent } from "@/components/layout/SkipToContent";
 import {
   AmbientBackground,
+  CustomCursor,
   LoadingSplash,
   MotionProvider,
   ScrollProgress,
@@ -51,6 +52,7 @@ export default function RootLayout({
           <LoadingSplash />
           <AmbientBackground />
           <ScrollProgress />
+          <CustomCursor />
           <SkipToContent />
           <Header />
           <div className="relative z-0 flex min-h-full min-w-0 max-w-full flex-1 flex-col">

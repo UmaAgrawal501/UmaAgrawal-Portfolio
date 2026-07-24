@@ -5,10 +5,9 @@ import type { NavItem } from "@/types";
  */
 export const navigation: NavItem[] = [
   { id: "about", label: "About", href: "#about" },
-  { id: "principles", label: "Approach", href: "#principles" },
+  { id: "skills", label: "Skills", href: "#skills" },
   { id: "experience", label: "Experience", href: "#experience" },
   { id: "work", label: "Projects", href: "#work" },
-  { id: "skills", label: "Skills", href: "#skills" },
   { id: "contact", label: "Contact", href: "#contact" },
 ];
 

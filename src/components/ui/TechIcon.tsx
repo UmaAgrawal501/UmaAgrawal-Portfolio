@@ -95,6 +95,8 @@ const SKILL_ICON_MAP: Record<string, IconDef> = {
     hex: "1B17FF",
     path: "M12 1.5 3.5 16.2h4.1L12 8.1l4.4 8.1h4.1L12 1.5zm-3.2 16.3h6.4V22.5H8.8z",
   },
+  chromadb: { kind: "mark", hex: "FF6B35", label: "CDB" },
+  chroma: { kind: "mark", hex: "FF6B35", label: "CDB" },
 
   git: { kind: "brand", icon: siGit },
   supabase: { kind: "brand", icon: siSupabase },
@@ -190,6 +192,7 @@ function resolveIcon(name: string): IconDef {
   if (key.includes("openai")) return SKILL_ICON_MAP.openai;
   if (key.includes("gemini")) return SKILL_ICON_MAP.gemini;
   if (key.includes("pinecone")) return SKILL_ICON_MAP.pinecone;
+  if (key.includes("chroma")) return SKILL_ICON_MAP.chromadb;
   if (key.includes("heygen")) return SKILL_ICON_MAP.heygen;
   if (key.includes("tavus")) return SKILL_ICON_MAP.tavus;
   if (key.includes("liveavatar") || key.includes("live avatar")) {

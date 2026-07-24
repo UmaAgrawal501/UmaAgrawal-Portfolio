@@ -30,10 +30,12 @@ function JourneyCard({
   entry: ExperienceEntry;
   side: "left" | "right";
 }) {
-  const highlights = getCuratedHighlights(entry);
-  const period = `${entry.startDate} – ${entry.endDate}`;
   const isEducation = entry.kind === "education";
-  const achievementsLabel = isEducation ? "Focus" : "Key Achievements";
+  const highlights = isEducation
+    ? entry.highlights
+    : getCuratedHighlights(entry);
+  const period = `${entry.startDate} – ${entry.endDate}`;
+  const achievementsLabel = isEducation ? "Focus Areas" : "Key Contributions";
   const skills = entry.skillsUsed ?? [];
 
   return (
@@ -51,7 +53,7 @@ function JourneyCard({
           {monogram(entry)}
         </span>
         <div className="min-w-0 flex-1">
-          <h3 className="text-[clamp(1.05rem,2.4vw,1.35rem)] font-semibold tracking-[-0.02em] text-text-primary">
+          <h3 className="font-display text-[clamp(1.05rem,2.4vw,1.35rem)] font-semibold tracking-[-0.02em] text-text-primary">
             {entry.role}
           </h3>
           <p className="mt-1 type-body font-medium text-accent-hover">
@@ -74,27 +76,40 @@ function JourneyCard({
           <p className="type-mono text-[0.65rem] tracking-[0.08em] text-text-tertiary uppercase">
             {achievementsLabel}
           </p>
-          <ul className="mt-3 list-none space-y-2.5 p-0">
-            {highlights.map((highlight) => (
-              <li
-                key={highlight}
-                className="type-body flex gap-3 text-text-secondary"
-              >
-                <span
-                  className="mt-2 size-1.5 shrink-0 rounded-full bg-accent"
-                  aria-hidden="true"
-                />
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
+          {isEducation ? (
+            <ul className="mt-3 flex list-none flex-wrap gap-2 p-0">
+              {highlights.map((highlight) => (
+                <li
+                  key={highlight}
+                  className="rounded-full border border-border-strong bg-background/50 px-3 py-1.5 text-sm text-text-secondary"
+                >
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <ul className="mt-3 list-none space-y-2.5 p-0">
+              {highlights.map((highlight) => (
+                <li
+                  key={highlight}
+                  className="type-body flex gap-3 text-text-secondary"
+                >
+                  <span
+                    className="mt-2 size-1.5 shrink-0 rounded-full bg-accent"
+                    aria-hidden="true"
+                  />
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       ) : null}
 
       {skills.length > 0 ? (
         <div className="mt-5">
           <p className="type-mono text-[0.65rem] tracking-[0.08em] text-text-tertiary uppercase">
-            {isEducation ? "Core Areas" : "Technologies Used"}
+            Technologies
           </p>
           <ul className="mt-3 flex list-none flex-wrap gap-2.5 p-0">
             {skills.map((skill) => (
@@ -132,7 +147,7 @@ export function Experience() {
             Professional Journey
           </h2>
           <p className="type-body mt-4 max-w-[40rem] text-text-secondary">
-            Work and education that shaped how I ship AI systems.
+            A journey through the teams, projects, and experiences that shaped my approach to engineering.
           </p>
         </Reveal>
 

@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState, type MouseEvent, type ReactNode } from "react";
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { sectionHeadlineClassName } from "@/constants/sections";
 import { techStack } from "@/data/tech-stack";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/cn";
 
 const CATEGORY_ICONS: Record<string, ReactNode> = {
@@ -62,13 +64,22 @@ export function Skills() {
   const categories = [...techStack].sort(
     (a, b) => (a.order ?? 99) - (b.order ?? 99),
   );
-  const [activeId, setActiveId] = useState(categories[0]?.id ?? "");
+  const [activeId, setActiveId] = useState<string>(categories[0]?.id ?? "");
+  const reduceMotion = useReducedMotion();
   const active =
     categories.find((category) => category.id === activeId) ?? categories[0];
 
   if (categories.length === 0 || !active) {
     return null;
   }
+
+  const selectCategory = (id: string) => setActiveId(id);
+
+  const onCategoryEnter = (id: string) => {
+    if (window.matchMedia("(pointer: fine)").matches) {
+      selectCategory(id);
+    }
+  };
 
   return (
     <section id="skills" aria-labelledby="skills-title" className="py-20 lg:py-28">
@@ -95,7 +106,11 @@ export function Skills() {
 
         <div className="mt-12 grid gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.25fr)] lg:gap-6">
           <Reveal>
-            <ul className="flex list-none flex-col gap-3 p-0" role="tablist" aria-label="Skill categories">
+            <ul
+              className="flex list-none flex-col gap-3 p-0"
+              role="tablist"
+              aria-label="Skill categories"
+            >
               {categories.map((category) => {
                 const selected = category.id === active.id;
                 return (
@@ -104,9 +119,11 @@ export function Skills() {
                       type="button"
                       role="tab"
                       aria-selected={selected}
-                      onClick={() => setActiveId(category.id)}
+                      onClick={() => selectCategory(category.id)}
+                      onMouseEnter={() => onCategoryEnter(category.id)}
+                      onFocus={() => selectCategory(category.id)}
                       className={cn(
-                        "group flex w-full items-center gap-4 rounded-2xl border px-4 py-4 text-left transition-[border-color,background-color,box-shadow] duration-200",
+                        "group flex w-full items-center gap-4 rounded-2xl border px-4 py-4 text-left transition-[border-color,background-color,box-shadow,transform] duration-200",
                         selected
                           ? "border-border-strong bg-surface/90 shadow-sm"
                           : "border-border/70 bg-transparent hover:border-border-strong hover:bg-surface/40",
@@ -131,28 +148,64 @@ export function Skills() {
           <Reveal>
             <div
               role="tabpanel"
-              className="glass relative min-h-[18rem] overflow-hidden rounded-[1.75rem] p-6 sm:p-8"
+              className="glass relative min-h-[18rem] overflow-hidden rounded-[1.75rem] p-6 sm:min-h-[22rem] sm:p-8"
+              onMouseMove={(event: MouseEvent<HTMLDivElement>) => {
+                if (reduceMotion) return;
+                const rect = event.currentTarget.getBoundingClientRect();
+                const x = ((event.clientX - rect.left) / rect.width) * 100;
+                const y = ((event.clientY - rect.top) / rect.height) * 100;
+                event.currentTarget.style.setProperty("--spot-x", `${x}%`);
+                event.currentTarget.style.setProperty("--spot-y", `${y}%`);
+              }}
             >
-              <div className="pointer-events-none absolute inset-0 opacity-40 cosmos-bg" aria-hidden="true" />
-              <div className="relative">
-                <p className="font-mono text-[0.7rem] tracking-[0.14em] text-accent uppercase">
-                  {active.title}
-                </p>
-                <ul className="mt-6 flex list-none flex-wrap gap-3 p-0">
-                  {active.items.map((item) => (
-                    <li
-                      key={item.name}
-                      className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-background/50 px-3.5 py-2 text-sm text-text-primary"
-                    >
-                      <span
-                        className="size-1.5 shrink-0 rounded-full bg-accent"
-                        aria-hidden="true"
-                      />
-                      {item.name}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <div
+                className="pointer-events-none absolute inset-0 opacity-40 cosmos-bg"
+                aria-hidden="true"
+              />
+              <div
+                className="pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-300"
+                style={{
+                  background:
+                    "radial-gradient(420px circle at var(--spot-x, 50%) var(--spot-y, 30%), rgba(224,169,94,0.16), transparent 55%)",
+                }}
+                aria-hidden="true"
+              />
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active.id}
+                  className="relative"
+                  initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <p className="font-mono text-[0.7rem] tracking-[0.14em] text-accent uppercase">
+                    {active.title}
+                  </p>
+                  <ul className="mt-6 flex list-none flex-wrap gap-3 p-0">
+                    {active.items.map((item, index) => (
+                      <motion.li
+                        key={item.name}
+                        initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: reduceMotion ? 0 : 0.03 * index,
+                          duration: 0.25,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-background/50 px-3.5 py-2 text-sm text-text-primary"
+                      >
+                        <span
+                          className="size-1.5 shrink-0 rounded-full bg-accent"
+                          aria-hidden="true"
+                        />
+                        {item.name}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </Reveal>
         </div>

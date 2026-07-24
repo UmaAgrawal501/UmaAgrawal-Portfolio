@@ -1,35 +1,28 @@
 import type { Principle } from "@/types";
 
 /**
- * AI engineering standards — support About, don’t restate it.
+ * About / Approach principles — Uma’s production AI standards.
  */
 export const principles = [
   {
-    id: "grounding",
-    title: "Ground before you generate",
+    id: "production",
+    title: "Built for production",
     description:
-      "If the answer isn’t in retrieved context, the system should say so—not invent confidently.",
+      "Reliable systems with clear architecture, observability, and maintainability from day one.",
     order: 1,
   },
   {
-    id: "agents",
-    title: "Keep agent boundaries explicit",
+    id: "grounded",
+    title: "Grounded in context",
     description:
-      "Intent routing, tools, and handoffs stay inspectable. Opaque multi-agent spaghetti doesn’t ship.",
+      "Designing retrieval-first experiences so AI responses remain accurate, relevant, and trustworthy.",
     order: 2,
   },
   {
-    id: "evaluate",
-    title: "Evaluate the AI path, not the vibe",
+    id: "automation",
+    title: "Automation with purpose",
     description:
-      "Retrieval quality, prompt regressions, and failure modes get checked like any other backend change.",
+      "Building AI workflows and agents that reduce manual effort and solve meaningful problems.",
     order: 3,
-  },
-  {
-    id: "simplicity",
-    title: "Prefer the smallest AI architecture that works",
-    description:
-      "One solid RAG or agent path beats a stack of models that nobody can operate.",
-    order: 4,
   },
 ] as const satisfies readonly Principle[];

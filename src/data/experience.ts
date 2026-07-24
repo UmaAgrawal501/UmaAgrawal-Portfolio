@@ -16,11 +16,11 @@ export const experience = [
     endDate: "Present",
     location: "Jaipur, Rajasthan",
     summary:
-      "Own LLM features in live customer workflows—conversational agents, retrieval grounding, and the APIs that connect them to existing product systems.",
+      "Building production AI features that help businesses automate workflows, retrieve the right information, and integrate intelligent systems into existing products. My work spans conversational AI, retrieval-augmented generation, backend services, and multi-agent workflows designed for reliability and real-world use.",
     highlights: [
-      "Shipped a production SMS AI assistant on FastAPI and LangGraph: intent classification, multi-turn dialogue, and multi-user session tracking (SQLite).",
-      "Designed LangChain/LangGraph multi-agent flows for lead handling and response generation, then integrated them with .NET backends and CRM systems.",
-      "Iterated RAG-style grounding and prompts so LLM answers stay tied to context under concurrent real-user load.",
+      "Built a production SMS AI assistant using FastAPI and LangGraph with intent classification, multi-turn conversations, and multi-user session management.",
+      "Designed multi-agent workflows for lead qualification and automated response generation, integrating AI services with existing .NET applications and CRM platforms.",
+      "Improved retrieval quality and prompt strategies to keep AI responses grounded in user context across real production workloads.",
     ],
     skillsUsed: [
       "Python",
@@ -36,15 +36,15 @@ export const experience = [
     id: "feynn-labs-ml",
     kind: "work",
     company: "Feynn Labs",
-    role: "Machine Learning (Data Science)",
+    role: "Machine Learning Intern",
     startDate: "Aug 2024",
     endDate: "Feb 2025",
     summary:
-      "Built and evaluated machine learning solutions on real-world datasets—from preprocessing and feature engineering through training, evaluation, and insight.",
+      "Worked on applied machine learning projects focused on turning data into practical insights—from computer vision pipelines to customer segmentation models using real-world datasets.",
     highlights: [
-      "Developed ML solutions with data preprocessing, feature engineering, model training, and evaluation on real-world datasets.",
-      "Built an AI pipeline for image segmentation and object analysis using deep learning computer-vision workflows.",
-      "Conducted market segmentation analysis with clustering techniques and supported decisions with EDA and visualization.",
+      "Built deep learning pipelines for image segmentation and object analysis using modern computer vision techniques.",
+      "Applied clustering algorithms to identify meaningful customer segments from real-world datasets.",
+      "Explored feature engineering, model evaluation, and data visualization to improve model performance and support data-driven decisions.",
     ],
     skillsUsed: [
       "Python",

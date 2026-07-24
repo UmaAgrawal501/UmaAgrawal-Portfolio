@@ -68,6 +68,11 @@
     text-rendering: optimizeLegibility;
   }
 
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+
   ::selection {
     background-color: color-mix(in srgb, var(--accent) 28%, transparent);
     color: var(--text-primary);
@@ -300,6 +305,7 @@
     );
     -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: transparent;
   }
 
