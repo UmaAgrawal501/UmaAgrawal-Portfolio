@@ -6,7 +6,7 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/cn";
 
 /**
- * Sitewide gold cursor — follows the pointer and expands on interactive targets.
+ * Sitewide teal cursor — follows the pointer and expands on interactive targets.
  */
 export function CustomCursor() {
   const reduceMotion = useReducedMotion();
@@ -74,7 +74,7 @@ export function CustomCursor() {
     >
       <span
         className={cn(
-          "relative flex items-center justify-center rounded-full border border-accent/70 bg-accent/15 shadow-[0_0_20px_rgb(224_169_94_/_0.35)] transition-[width,height,background-color,border-color] duration-200",
+          "relative flex items-center justify-center rounded-full border border-accent/70 bg-accent/15 shadow-[0_0_20px_rgb(127_199_196_/_0.35)] transition-[width,height,background-color,border-color] duration-200",
           hovering ? "size-12 border-accent bg-accent/25" : "size-8",
         )}
       >

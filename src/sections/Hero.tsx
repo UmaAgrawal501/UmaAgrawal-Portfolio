@@ -276,8 +276,8 @@ export function Hero() {
                       y2="0%"
                     >
                       <stop offset="0%" stopColor="#f4f0e9" />
-                      <stop offset="45%" stopColor="#e0a95e" />
-                      <stop offset="100%" stopColor="#f0bd76" />
+                      <stop offset="45%" stopColor="#7fc7c4" />
+                      <stop offset="100%" stopColor="#9ad9d6" />
                     </linearGradient>
                   </defs>
                   <text
@@ -338,14 +338,14 @@ export function Hero() {
             className="relative mx-auto w-full max-w-[17rem] overflow-visible sm:max-w-[19rem] lg:max-w-[21rem]"
           >
             <div
-              className="absolute inset-4 -z-10 rounded-[2rem] bg-[radial-gradient(circle_at_50%_35%,rgba(224,169,94,0.38),transparent_70%)] blur-2xl"
+              className="absolute inset-4 -z-10 rounded-[2rem] bg-[radial-gradient(circle_at_50%_35%,rgba(127,199,196,0.38),transparent_70%)] blur-2xl"
               aria-hidden="true"
             />
 
             <div className="relative aspect-[12/16] w-full overflow-visible">
               <motion.div
                 style={{ x: composedImageX, y: imageY, rotate: imageRotate }}
-                className="absolute inset-0 overflow-hidden rounded-[1.75rem] border border-accent/30 bg-[#161210] shadow-[0_0_0_1px_rgba(224,169,94,0.1)] will-change-transform"
+                className="absolute inset-0 overflow-hidden rounded-[1.75rem] border border-accent/30 bg-[#101416] shadow-[0_0_0_1px_rgba(127,199,196,0.1)] will-change-transform"
               >
                 {portrait ? (
                   <Image

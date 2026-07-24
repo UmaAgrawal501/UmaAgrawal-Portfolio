@@ -21,7 +21,7 @@ export function GoldPills({ items, className, size = "md" }: GoldPillsProps) {
         <li
           key={item}
           className={cn(
-            "rounded-full border border-accent/65 bg-[rgba(224,169,94,0.08)] font-medium leading-none text-accent",
+            "rounded-full border border-accent/65 bg-[rgba(127,199,196,0.08)] font-medium leading-none text-accent",
             sizeClass[size],
           )}
         >

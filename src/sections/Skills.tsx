@@ -166,7 +166,7 @@ export function Skills() {
                 className="pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-300"
                 style={{
                   background:
-                    "radial-gradient(420px circle at var(--spot-x, 50%) var(--spot-y, 30%), rgba(224,169,94,0.16), transparent 55%)",
+                    "radial-gradient(420px circle at var(--spot-x, 50%) var(--spot-y, 30%), rgba(127,199,196,0.16), transparent 55%)",
                 }}
                 aria-hidden="true"
               />

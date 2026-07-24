@@ -9,6 +9,7 @@ import {
   MotionProvider,
   ScrollProgress,
 } from "@/components/motion";
+import { PortfolioAI } from "@/components/portfolio-ai/PortfolioAI";
 import { buildRootMetadata } from "@/lib/seo";
 import "./globals.css";
 
@@ -58,6 +59,7 @@ export default function RootLayout({
           <div className="relative z-0 flex min-h-full min-w-0 max-w-full flex-1 flex-col">
             {children}
           </div>
+          <PortfolioAI />
         </MotionProvider>
       </body>
     </html>

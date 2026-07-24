@@ -19,20 +19,20 @@ export function AmbientBackground() {
       aria-hidden="true"
     >
       <div className="absolute inset-0 opacity-[0.55] cosmos-bg mask-fade-y" />
-      <div className="absolute -top-40 left-[8%] h-[42rem] w-[42rem] animate-aurora rounded-full bg-[radial-gradient(circle,rgba(224,169,94,0.16),transparent_65%)] blur-2xl" />
+      <div className="absolute -top-40 left-[8%] h-[42rem] w-[42rem] animate-aurora rounded-full bg-[radial-gradient(circle,rgba(127,199,196,0.16),transparent_65%)] blur-2xl" />
       <div
         className="absolute top-1/3 right-[-10%] h-[38rem] w-[38rem] animate-aurora rounded-full bg-[radial-gradient(circle,rgba(127,199,196,0.1),transparent_65%)] blur-2xl"
         style={{ animationDelay: "-6s" }}
       />
       <div
-        className="absolute bottom-[-15%] left-1/3 h-[34rem] w-[34rem] animate-aurora rounded-full bg-[radial-gradient(circle,rgba(224,169,94,0.1),transparent_65%)] blur-2xl"
+        className="absolute bottom-[-15%] left-1/3 h-[34rem] w-[34rem] animate-aurora rounded-full bg-[radial-gradient(circle,rgba(127,199,196,0.1),transparent_65%)] blur-2xl"
         style={{ animationDelay: "-11s" }}
       />
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(600px circle at 50% 50%, rgba(224,169,94,0.07), transparent 55%)",
+            "radial-gradient(600px circle at 50% 50%, rgba(127,199,196,0.07), transparent 55%)",
         }}
       />
       {PARTICLES.map((particle) => (

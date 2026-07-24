@@ -50,7 +50,7 @@ export function ProjectRow({ project }: ProjectRowProps) {
         ) : (
           <div
             aria-hidden="true"
-            className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(224,169,94,0.18),transparent_55%),radial-gradient(circle_at_80%_80%,rgba(127,199,196,0.12),transparent_50%)]"
+            className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(127,199,196,0.18),transparent_55%),radial-gradient(circle_at_80%_80%,rgba(201,184,150,0.1),transparent_50%)]"
           >
             <span className="font-display text-5xl font-bold tracking-tight text-accent/40 sm:text-6xl">
               {monogram}

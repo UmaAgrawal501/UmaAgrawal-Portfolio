@@ -1,5 +1,5 @@
 /**
- * Dark gold AI portfolio tokens — Hussam-inspired restyle (approved).
+ * Soft teal AI portfolio tokens — calm aqua accent on near-black.
  */
 
 :root {
@@ -10,11 +10,11 @@
   --border: #2a262f;
   --border-strong: #3d3744;
 
-  --accent: #e0a95e;
-  --accent-hover: #f0bd76;
-  --accent-muted: #a97b3c;
-  --accent-glow: rgb(224 169 94 / 0.45);
-  --accent-cool: #7fc7c4;
+  --accent: #7fc7c4;
+  --accent-hover: #9ad9d6;
+  --accent-muted: #4a8f8c;
+  --accent-glow: rgb(127 199 196 / 0.45);
+  --accent-cool: #c9b896;
 
   --text-primary: #f4f0e9;
   --text-secondary: #b8afa1;
@@ -23,7 +23,7 @@
 
   --success: #3ddc97;
   --warning: #f5a524;
-  --focus: #f0bd76;
+  --focus: #9ad9d6;
 
   --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
@@ -81,9 +81,9 @@
   --radius-full: 9999px;
 
   --shadow-none: none;
-  --shadow-sm: 0 0 0 1px rgb(224 169 94 / 0.18);
-  --shadow-md: 0 0 40px rgb(224 169 94 / 0.22);
-  --shadow-glow: 0 0 28px rgb(224 169 94 / 0.5);
+  --shadow-sm: 0 0 0 1px rgb(127 199 196 / 0.18);
+  --shadow-md: 0 0 40px rgb(127 199 196 / 0.22);
+  --shadow-glow: 0 0 28px rgb(127 199 196 / 0.5);
 
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
   --duration-fast: 150ms;

@@ -80,7 +80,7 @@ export function Contact() {
         <Reveal>
           <div className="glass relative overflow-hidden rounded-[2rem] border border-border/80 px-6 py-10 shadow-md sm:px-10 sm:py-12 lg:px-12 lg:py-14">
             <div
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_20%,rgba(224,169,94,0.14),transparent_40%),linear-gradient(120deg,rgba(224,169,94,0.08),transparent_45%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_20%,rgba(127,199,196,0.14),transparent_40%),linear-gradient(120deg,rgba(127,199,196,0.08),transparent_45%)]"
               aria-hidden="true"
             />
 
@@ -114,7 +114,7 @@ export function Contact() {
                 <div className="relative flex w-full max-w-[34rem] flex-col gap-3 sm:flex-row">
                   <span
                     aria-hidden="true"
-                    className="absolute -top-5 right-4 hidden size-2 rounded-full bg-accent shadow-[0_0_18px_rgba(224,169,94,0.85)] sm:block"
+                    className="absolute -top-5 right-4 hidden size-2 rounded-full bg-accent shadow-[0_0_18px_rgba(127,199,196,0.85)] sm:block"
                   />
                   <ContactDetail
                     href={`mailto:${site.email}`}

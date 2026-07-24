@@ -1,12 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useId, useState } from "react";
 import { Container } from "@/components/layout/Container";
 import { NavLink } from "@/components/layout/NavLink";
 import { Button } from "@/components/ui/Button";
 import { navigation } from "@/constants/navigation";
-import { about } from "@/data/about";
 import { site } from "@/data/site";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useScrolled } from "@/hooks/useScrolled";
@@ -25,7 +23,6 @@ export function Header() {
   const activeId = useActiveSection();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuId = useId();
-  const portrait = about.portrait;
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -84,15 +81,6 @@ export function Header() {
         </ul>
 
         <div className="hidden items-center gap-3 lg:flex">
-          {portrait ? (
-            <Image
-              src={portrait.src}
-              alt=""
-              width={36}
-              height={36}
-              className="size-9 rounded-full object-cover portrait-ring"
-            />
-          ) : null}
           <Button href="#contact" size="sm" className="btn-glow rounded-full px-5">
             Get in Touch
           </Button>
